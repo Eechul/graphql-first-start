@@ -18,9 +18,8 @@ public class UserMutation implements GraphQLMutationResolver {
     public User createUser(UserDto userDto) {
         User save = new User();
         save.setName(userDto.getName());
-
-        User user = userRepository.save(User);
-
+        User user = userRepository.save(save);
+        return user;
     }
 
 }

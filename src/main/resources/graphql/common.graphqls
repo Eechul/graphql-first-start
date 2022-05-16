@@ -5,7 +5,7 @@ schema {
 }
 
 type Query {
-    users(count: Int, offset: Int): [User],
+    users: [User],
     getUser(id: Int!): User
 }
 

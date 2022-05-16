@@ -1,13 +1,13 @@
-package com.start.graphqlfirst.resolver;
+package com.start.graphqlfirst.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.start.graphqlfirst.entity.User;
 import com.start.graphqlfirst.repository.UserRepository;
-import com.start.graphqlfirst.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Component
@@ -16,9 +16,13 @@ public class UserQuery implements GraphQLQueryResolver {
 
     private final UserRepository userRepository;
 
-    public User getUser(final long id) {
-        if(id <= 0) {  return null; }
-
-        return this.userRepository.getById(id);
+    public List<User> users() {
+        return this.userRepository.findAll();
     }
+
+    public User getUser(final Long id) {
+        return this.userRepository.findById(id).orElse(null);
+    }
+
+
 }
