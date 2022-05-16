@@ -1,4 +1,24 @@
+
+schema {
+    query: Query,
+    mutation: Mutation
+}
+
+type Query {
+    users(count: Int, offset: Int): [User],
+    getUser(id: Int!): User
+}
+
+type Mutation {
+    createUser(saveUserInfo: SaveUser): User!
+}
+
 type User {
-    id: Int!
+    id: Int!,
     name: String!
 }
+
+input SaveUser {
+    name: String!
+}
+
